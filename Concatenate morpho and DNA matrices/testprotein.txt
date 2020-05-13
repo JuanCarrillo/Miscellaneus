@@ -1,0 +1,4 @@
+3 5
+Taxa_1 BBBBB
+Taxa_3 BBBBB
+Taxa_7 BBBBB

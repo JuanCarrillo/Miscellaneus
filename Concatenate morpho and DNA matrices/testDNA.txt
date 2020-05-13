@@ -1,0 +1,6 @@
+5 5
+Taxa_1 AAAAA
+Taxa_2 AAAAA
+Taxa_3 AAAAA
+Taxa_4 AAAAA
+Taxa_5 AAAAA
