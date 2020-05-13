@@ -1,1 +1,264 @@
+library (geiger)
+t3$root.time <- max(diag(vcv(t3))) #this computes the variance-covariance matrix of the branch lengths and finds the maximum value on the diagonal
+t5 <- dropExtinct(t3, tol = 0.01)
+plot(drop.tip(phy = tshirt, tip = sample(x = tshirt$tip.label, size = 5, replace = FALSE))) #drop 5 random tips
+plot(drop.tip(tshirt, c("Tyto","Octopus"))) #drop specific tips
+subtree <- extract.clade(phy = tshirt, node = getMRCA(phy = tshirt, tip = c("Octopus","Glyptodon")))
+plot(subtree)
+plot(ladderize(tshirt, right = F), direction = "up", label.offset = 0.1)
+plot(ladderize(tshirt, right = T), direction = "up", label.offset = 0.1)
+totally.a.real.clade <- c("Stenopterygius","Chelonia","Glyptodon") #vector of tip-labels defining your clade of interest
+clade.edges <- which.edge(tshirt, totally.a.real.clade) #get the rownames of the edges (i.e. branches) in the tree pertaining to your clade
+clade.cols <- rep("black", nrow(tshirt$edge)) #a vector of colours - one for each branch in the tree
+clade.cols
+clade.cols[clade.edges] <- "cornflowerblue" #replace values for branches associated with our clade
+clade.cols
+plot(tshirt, edge.width = 5, edge.color = clade.cols, label.offset = 0.2) #plot it
+plot(tshirt, label.offset = 0.2)
+rainbow.tip.cols <- rainbow(length(tshirt$tip.label))
+names(rainbow.tip.cols) <- tshirt$tip.label
+tiplabels(pch = 23, cex = 2, bg = rainbow.tip.cols)
+plot(tshirt, label.offset = 0.2); tiplabels(pch = 23, cex = 2, bg = rainbow.tip.cols)
+plot(timescaled.tree, x.lim = c(0,1.25*max(nodeHeights(timescaled.tree))))
+nodelabels(c(":(",":'("), c(19,14), frame = "none", adj = c(2,-1.5))
+nodelabels("=)", 12, frame = "circle", cex = 2, bg = "cornflowerblue", col = "yellow")
+cladelabels(timescaled.tree, node = 19, "\nDefinitely A Real Clade", offset = -2) #the '\n' inserts a new line to improve spacing
+cladelabels(timescaled.tree, node = 14, "\nOMG!")
+cladelabels(timescaled.tree, node = 12, "LOL!", offset = 1, orientation = "horizontal", cex = 2)
+library(paleobioDB)
+NA.exclude<-pbdb_taxa (name=c("Hystricognathi", "Pinnipedia", "Cetacea", "Sirenia", #
+			      "Desmostylia", "Amahuacatherium"),vocab="pbdb")
+str(NA.exclude)
+library(paleobioDB)
+?pbdb_occurrences
+?pbdb_map
+?pbdb_map_richness
+?pdbd_richness
+?pbdb_richness
+?pbdb_orig_ext
+?pbdb_temp_range
+?pbdb_occurrences
+caviomorpha<-pbdb_occurrences(limit="all", base_name="caviomorpha",vocab="pbdb",interval="Neogene",show+c("coords","phylo","ident"))
+caviomorpha<-pbdb_occurrences(limit="all", base_name="caviomorpha",vocab="pbdb",interval="Neogene",show=c("coords","phylo","ident"))
+str(caviomorpha)
+cav<-pbdb_occurrences(limit="all", base_name="caviomorpha",vocab="pbdb",interval="Neogene",show=c("coords","phylo","ident"))
+str(cav)
+plot(cav$early_age, cav$lat)
+points(cav$late_age,cav4lat)
+points(cav$late_age,cav$lat)
+cav<-pbdb_occurrences(base_name="Caviomorpha",ident="latest",continent="SOA",limit="all",max_ma=23.03,timerule="contain",show=c("coords","loc","paleoloc","ident","phylo"))
+str(cav)
+cav<-pbdb_occurrences(base_name="Caviomorpha",ident="latest",continent="SOA",limit="all",max_ma=23,timerule="contain",show=c("coords","loc","paleoloc","ident","phylo"),created_before='2016-30-10')
+cav<-pbdb_occurrences(base_name="Caviomorpha",ident="latest",continent="SOA",limit="all",max_ma=23,timerule="contain",show=c("coords","loc","paleoloc","ident","phylo"),created_before='2016-10-30')
+str(cav)
+pbdb_occurrences(base_name="Caviomorpha",ident="latest",continent="SOA",limit="all",max_ma=23.03,timerule="contain",show=c("coords","loc","paleoloc","ident","phylo"),created_before='2016-10-30')
+str(cav)
+cav<-pbdb_occurrences(base_name="Caviomorpha",ident="latest",continent="SOA",limit="all",max_ma=23.03,timerule="contain",show=c("coords","loc","paleoloc","ident","phylo"),created_before='2016-10-30')
+str(cav)
+cav<-pbdb_occurrences(base_name="Caviomorpha",ident="latest",continent="SOA",limit="all",max_ma=23,timerule="contain",show=c("coords","loc","paleoloc","ident","phylo"),created_before='2016-10-30')
+str(cav)
+cav<-pbdb_occurrences(base_name="Caviomorpha",ident="latest",continent="SOA",limit="all",max_ma=23.03,timerule="contain",show=c("coords","loc","paleoloc","ident","phylo"),created_before='2016-10-30')
+str(cav)
+head(cav)
+levels(cav$gnl)
+cav$mag<-(cav$eag+cav$lag)/2
+head(cav)
+plot(cav$mag,cav$lat)
+plot(cav$lat,cav$lng)
+plot(cav$lng,cav$lat)
+hist(cav$mag)
+?pbdb_map
+pbdb_map(cav)
+pbdb_map(cav, col.int="white",col.ocean="gray")
+?map
+pbdb_map(cav, col.int="white",col.ocean="gray",xlim=c(-50,-70),ylim=c(-50,13))
+pbdb_map(cav, col.int="white",col.ocean="gray",xlim=c(-50,-70),ylim=c(13,-50))
+pbdb_map(cav, col.int="white",col.ocean="gray",xlim=range(cav$lng),ylim=range(cav$lat)
+)
+range(cav$lng)
+pbdb_map(cav, col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=range(cav$lat))
+range(cav$lat)
+pbdb_map(cav, col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=c(-55,13)
+)
+pbdb_map(cav, col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=c(-55,13))
+pbdb_map(cav)
+pbdb_map(cav, col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=c(-55,13))
+?pbdb_map_occur
+pbdb_map_occur(cav,res=5)
+pbdb_map_occur(cav, col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=c(-55,13))
+pbdb_map_occur(cav, col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=c(-55,13),res=1)
+samp.effort<-pbdb_map_occur(cav,res=1)
+samp.effort
+pbdb_map_occur(cav, col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=c(-55,13),res=1)
+pbdb_map_richness(cav,res=5,rank=species)
+pbdb_map_richness(cav,res=5,rank="species")
+?pbdb_map_richness
+pbdb_map_richness(cav,res=5,rank="species",col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=c(-55,13))
+pbdb_map_richness(cav,res=2,rank="species",col.int="white",col.ocean="gray",xlim=c(-85,-35),ylim=c(-55,13))
+pbdb_temp_range(cav,rank"species")
+pbdb_temp_range(cav,rank="species")
+pbdb_temp_range(cav,rank="genera")
+pbdb_temp_range(cav,rank="genus")
+?pbdb_temp_range
+?pbdb_richness
+pbdb_richness(cav,rank="species",temporal_extent=c(5,23.03))
+?pbdb_orig_ext
+pbdb_orig_ext(cav,rank="genus",temporal_extent=c(0,23.03),orig_ext=c(1,2))
+pbdb_orig_ext(cav,rank="genus",temporal_extent=c(0,23.03),orig_ext=1)
+pbdb_orig_ext(cav,rank="genus",temporal_extent=c(0,23.03),orig_ext=2)
+pbdb_orig_ext(cav,rank="genus",temporal_extent=c(0,23.03),orig_ext=1,res=2)
+pbdb_orig_ext(cav,rank="genus",temporal_extent=c(0,23.03),orig_ext=2,res=2)
+pbdb_orig_ext(cav,rank="genus",temporal_extent=c(0,23.03),orig_ext=1,res=2)
+pbdb_orig_ext(cav,rank="genus",temporal_extent=c(0,23.03),orig_ext=1,res=2,ylim=c(0,40))
+pbdb_orig_ext(cav,rank="genus",temporal_extent=c(0,23.03),orig_ext=1,res=2)
+pbdb_subtaxa(cav)
+pbdb_temporal_resolution(cav)
+pbdb_richness(cav,rank="species",temporal_extent=c(5,23.03))
+?pbdb_collections
+cav.coll<-pbdb_collections(base_name="Caviomorpha",ident="latest",continent="SOA",limit="all",max_ma=23.03,timerule="contain",show=c("coords","loc","paleoloc"),created_before='2016-10-30')
+str(cav.coll)
+cav.coll<-pbdb_collections(base_name="Caviomorpha",continent="SOA",limit="all",max_ma=23.03,timerule="contain",show=c("coords","loc","paleoloc"),created_before='2016-10-30')
+str(cav.coll)
+cav.coll<-pbdb_collections(base_name="Caviomorpha",continent="SOA",limit="all",max_ma=23.03,timerule="contain",created_before='2016-10-30')
+cav.coll<-pbdb_collections(base_name="Caviomorpha",continent="SOA")
+cav.coll<-pbdb_collections(base_name="Caviomorpha", interval="Miocene")
+str(cav.coll)
+werden, in dem dieser zu finden ist:
+Text
+getwd()
+setwd("/Users/juancarrillo/Dropbox (PaleoColombia)/Documents work/Publications/Thuxleya ArtEx/Well-corroborated tree/ Merge datasets/test")
+setwd("/Users/juancarrillo/Dropbox (PaleoColombia)/Documents work/Publications/Thuxleya ArtEx/Well-corroborated tree/Merge datasets/test")
+getwd()
+dir()
+ls()
+test.dna<-read.dna("testDNA.txt",format="interleaved",as.character=TRUE)
+?read.dna
+library(ape)
+library(phangorn)
+library(phytools)
+library(corHMM)
+library(seqinr)
+?read.dna
+test.dna<-read.dna("testDNA.txt",format="interleaved",as.character=TRUE)
+str(test.dna)
+head(test.dna)
+test.dna[,0]
+test.prot<-read.dna("testprotein.txt",format="interleaved",as.character=TRUE)
+str(test.prot)
+head(test.prot)
+test.prot[,0]
+test.morph<-readNexusMorph("testmorph.txt")
+str(test.morph)
+?readNexusMorph
+str(test.morph)
+head(test.morph)
 tmorph<-as.matrix(test.morph)
+str(tmorph)
+tmorph[,0]
+gsub("&","",tmorph)
+gsub("0,1,2","[0,1,2]",tmorph)
+write.nexus.data(tmorph,file="morphtest2")
+test.morph<-readNexusMorph("testmorph.txt")
+str(test.morph)
+head(test.morph)
+tmorph<-as.matrix(test.morph)
+str(tmorph)
+tmorph[,0]
+head(test.dna)
+head(test.prot)
+tdna.prot<-as.matrix(merge(test.dna,test.prot,by=0,all.x=TRUE,all.y=TRUE))
+head(tdna.prot)
+tdna.prot[is.na(tdna.prot)]<-"?"
+head(tdna.prot)
+str(tdna.prot)
+tdna.prot[,1]
+tdna.prot2<-as.matrix(tdna.prot[,-0])
+head(tdna.prot)
+ndna.prot<-match(rownames(test.dna),rownames(test.prot))
+ndna.prot
+tdna.prot2<-cbind(test.dna,test.prot[ndna.prot,])
+head(tdna.prot2)
+cbind.fill <- function(x, y){#
+  xrn <- rownames(x)#
+  yrn <- rownames(y)#
+  rn <- union(xrn, yrn)#
+  if(is.null(xrn) | is.null(yrn)) #
+    stop("NULL rownames")#
+  z <- matrix(NA, nrow=length(rn), ncol=ncol(x)+ncol(y))#
+  rownames(z) <- rn#
+  idx <- match(rn, xrn)#
+  z[!is.na(idx), 1:ncol(x)] <- x[na.omit(idx),]#
+  idy <- match(rn, yrn)#
+  z[!is.na(idy), ncol(x)+(1:ncol(y))] <- y[na.omit(idy),]#
+  return(z)#
+}
+tdna.prot3<-cbind.fill(test.dna,test.prot)
+tdna.prot3[is.na(tdna.prot3)]<-"?"
+tdna.prot3
+dir()
+ndna.prot<-match(rownames(test.dna),rownames(test.prot))
+tdna.prot2<-cbind(test.dna,test.prot[ndna.prot,])
+head(tdna.prot2)
+head(test.dna)
+head(test.prot)
+head(tdna.prot2)
+head(test.morph)
+morph.dna<-match(rownames(test.morph),rownames(test.dna))
+head(morph.dna)
+nmorph.dna<-match(rownames(test.morph),rownames(test.dna))
+tmorph.dna<-cbind(test.morph,test.dna[nmoprh.dna,])
+nmorph.dna<-match(rownames(test.morph),rownames(test.dna))
+tmorph.dna<-cbind(test.morph,test.dna[nmoprh.dna,])
+ndna.prot<-match(rownames(test.dna),rownames(test.prot))
+ndna.prot
+test.morph
+test.dna
+nmorph.dna<-match(rownames(test.morph),rownames(test.dna))
+nmorph.dna
+tmorph.dna<-cbind(test.morph,test.dna[nmoprh.dna,])
+ndna.prot<-match(rownames(test.dna),rownames(test.prot))
+tdna.prot2<-cbind(test.dna,test.prot[ndna.prot,])
+head(tdna.prot2)
+head(test.morph)
+head(test.dna)
+nmorph.dna<-match(rownames(test.morph),rownames(test.dna))
+tmorph.dna<-cbind(test.morph,test.dna[nmoprh.dna,])
+tmorph.dna<-cbind(test.morph,test.dna[nmorph.dna,])
+head(morph.dna)
+nmorph.dna<-match(rownames(test.morph),rownames(test.dna))
+tmorph.dna<-cbind(test.morph,test.dna[nmorph.dna,])
+head(morph.dna)
+head(tmorph.dna)
+tmorph.dna[is.na(tmorph.dna)]<-"?"
+head(tmorph.dna)
+tdna.prot3<-cbind.fill(test.dna,test.prot)
+tdna.prot3
+tdna.prot3[is.na(tdna.prot3)]<-"?"
+tdna.prot3
+head(tmorph.dna)
+tmorph.dna[is.na(tmorph.dna)]<-"?"
+str(tmorph.dna)
+str(tmorph)
+test.morph<-readNexusMorph("testmorph.txt")
+str(test.morph)
+head(test.morph)
+tmorph<-as.matrix(test.morph)
+str(tmorph)
+nmorph.dna<-match(rownames(test.morph),rownames(test.dna))
+tmorph.dna<-cbind(test.morph,test.dna[nmorph.dna,])
+head(tmorph.dna)
+str(tmorph.dna)
+tmorph.dna[is.na(tmorph.dna)]<-"?"
+head(tmorph.dna)
+str(tmorph.dna)
+tmorph.dnam<-as.matrix(tmorph.dna)
+tmorph.dnam[is.na(tmorph.dnam)]<-"?"
+head(tmorph.dnam)
+nmorph.dna<-match(rownames(test.morph),rownames(test.dna))
+tmorph.dna<-cbind(test.morph,test.dna[nmorph.dna,])
+head(tmorph.dna)
+str(tmorph.dna)
+nmorph.dna.prot<-match(rownames(nmorph.dna),rowname(test.prot))
+nmorph.dna.prot<-match(rownames(nmorph.dna),rownames(test.prot))
+tmorph.dna.prot<-cbind(tmorph.dna, test.prot[nmorph.dna.prot,])
+tmorph.dna.prot<-cbind(tmorph.dnam, test.prot[nmorph.dna.prot,])
