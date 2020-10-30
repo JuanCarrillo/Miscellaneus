@@ -55,7 +55,3 @@ head(tmorph.dna.prot)
 #Export final matrix as nexus file 
 ?write.nexus.data
 write.nexus.data(tmorph.dna.prot,file="tmerge",datablock=T,interleaved=F)
-
-
-  
-
