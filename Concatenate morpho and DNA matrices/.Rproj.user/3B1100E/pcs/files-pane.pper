@@ -1,9 +1,9 @@
 {
-    "path" : "~/Documents/GitHub/Miscellaneus/Concatenate morpho and DNA matrices",
-    "sortOrder" : [
+    "path": "~/Documents/GitHub/Miscellaneus/Concatenate morpho and DNA matrices",
+    "sortOrder": [
         {
-            "ascending" : true,
-            "columnIndex" : 2
+            "ascending": true,
+            "columnIndex": 2
         }
     ]
 }
